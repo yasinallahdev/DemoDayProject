@@ -9,9 +9,18 @@
     </head>
     <body>
         <header>
-            <h1>MBTA Accessible Trip Planner</h1>
+            <h1>Accessible Trip Planner</h1>
         </header>
-        <section id="constructionNotes">
+        <form action="/getInformation" method="post">
+            <input type="text" name="originStation" required>
+            <input type="text" name="destinationStation" required>
+            <button type="submit">Lookup Route</button>
+        </form>
+        <section id="constructionNews" class="borderedSection">
+            <h2>South Coast Rail to Taunton, Fall River, and New Bedford seeing substantial progress</h2>
+            <img src="img/south-coast-rail.jpg" alt="Current News">
+        </section>
+        <section id="constructionNotes" class="borderedSection">
             <header>
                 <h2>Construction Notes:</h2>
                 <p>Lechmere Station to shut down for Green Line Extension.</p>
@@ -20,5 +29,7 @@
         <footer>
             <p>This project is not in any way associated with the MBTA (Massachusetts Bay Transportation Authority), MassDOT, or Keolis.</p>
         </footer>
+
+        <script src='js/script.js'></script>
     </body>
 </html>
