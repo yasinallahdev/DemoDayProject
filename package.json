@@ -1,0 +1,24 @@
+{
+  "name": "demo-day-project",
+  "version": "0.0.1",
+  "description": "\"An MBTA Train Tracker that shows Accessible Ways to get to various stations on the MBTA Subway and Commuter Rail Networks.\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasinallahdev/DemoDayProject.git"
+  },
+  "author": "Ya Sin Supreme Allah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yasinallahdev/DemoDayProject/issues"
+  },
+  "homepage": "https://github.com/yasinallahdev/DemoDayProject#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.4",
+    "sha3": "^2.0.7"
+  }
+}
