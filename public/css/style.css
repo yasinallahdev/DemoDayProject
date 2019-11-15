@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+}
+
+.borderedSection {
+    border: 3px solid black;
+}
+
+#constructionNews img {
+    width: 50%;
+    height: 50%;
+}
