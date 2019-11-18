@@ -6,7 +6,7 @@ module.exports = function(app, passport, db) {
     app.get('/', function(req, res) {
         db.collection('newsStories').find().toArray((err, result) => {
           if (err) return console.log(err)
-          res.render('index.ejs', {story: result.story[0]});
+          res.render('index.ejs', {story: result[0].story});
         })
     });
 
