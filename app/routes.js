@@ -4,7 +4,10 @@ module.exports = function(app, passport, db) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        db.collection('newsStories').find().toArray((err, result) => {
+          if (err) return console.log(err)
+          res.render('index.ejs', {story: result[0]});
+        })
     });
 
     // PROFILE SECTION =========================
