@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/yasinallahdev/DemoDayProject#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "ejs": "^2.7.2",
     "express": "^4.17.1",
     "mongodb": "^3.3.4",
+    "mongoose": "^5.7.11",
     "nodemon": "^1.19.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "sha3": "^2.0.7"
   }
 }
