@@ -8,4 +8,4 @@ In a world where ADA-Accessibility is one of the most important things in the wo
 
 # Running
 1: run `node app.js`
-2: navigate to `localhost:8000`
+2: navigate to `localhost:8080`
