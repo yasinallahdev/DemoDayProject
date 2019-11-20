@@ -1,10 +1,13 @@
 // load the things we need
 var mongoose = require('mongoose');
-var bcrypt   = require('bcryptjs');
+var bcrypt   = require('bcrypt');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
 
+
+    favoriteStations : Array,
+    username         : String,
     local            : {
         email        : String,
         password     : String

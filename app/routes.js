@@ -5,19 +5,13 @@ module.exports = function(app, passport, db) {
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
         const story = db.collection('newsStories').findOne();
-        console.table(story)
-        res.render('index.ejs', {story: story});
+        // console.table(story)
+        res.render('accounts.ejs', {loadedData: {isLoggedIn: false}});
     });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
-          if (err) return console.log(err)
-          res.render('profile.ejs', {
-            user : req.user,
-            messages: result
-          })
-        })
+        res.render('profile.ejs', {user: req.user});
     });
 
     // LOGOUT ==============================

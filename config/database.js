@@ -1,9 +1,13 @@
 // config/database.js
 
-const password = "gaGZTFyWV3cULFef";
+function Database() {
 
-module.exports = {
+    const password = "gaGZTFyWV3cULFef";
+    this.dbName = 'demo';
+    this.url = `mongodb+srv://Frosty-Phoenix-Admin:${password}@cluster0-urpux.azure.mongodb.net/${this.dbName}?retryWrites=true&w=majority`; // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
 
-    'url' : `mongodb+srv://Frosty-Phoenix-Admin:${password}@cluster0-urpux.azure.mongodb.net/test?retryWrites=true&w=majority`, // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
-    'dbName': 'demo'
-};
+    return this;
+
+}
+
+module.exports = new Database();
