@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 module.exports = function(app, passport, db) {
 
 // normal routes ===============================================================
@@ -62,6 +64,22 @@ module.exports = function(app, passport, db) {
             failureRedirect : '/signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
+
+        app.post('/addFavoriteStation', (request, response) => {
+          db.collection('users').findOneAndUpdate(
+            {'local.email': request.user.local.email}, 
+            { $addToSet: { favoriteStations: { stationName: request.body.stationName }}}
+          );
+          response.redirect('/profile')
+        });
+
+        app.delete('/deleteFavoriteStation', (request, response) => {
+          db.collection('users').findOneAndUpdate(
+            {'local.email': request.user.local.email}, 
+            { $pull: { favoriteStations: { stationName: request.body.stationName }}}
+          );
+          response.end();
+        })
 
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
