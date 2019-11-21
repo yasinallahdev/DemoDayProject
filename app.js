@@ -23,7 +23,6 @@ var db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  console.log(`Connected to Database URL: ${configDB.url}`);
   require('./app/routes.js')(app, passport, db);
 }); // connect to our database
 
@@ -41,7 +40,7 @@ mongoose.connect(configDB.url, (err, database) => {
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
-app.use(morgan('dev')); // log every request to the console
+//app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));

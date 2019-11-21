@@ -24,7 +24,20 @@
 						<nav id="nav">
 							<ul>
 								<li class="current"><a href="/">Home</a></li>
-								<li><a href="/account">Account</a></li>
+								<li>
+									<span>Account</span>
+									<% if(!isLoggedIn) { %>
+										<ul>
+											<li><a href="/login">Log In</a></li>
+											<li><a href="/signup">Sign Up</a></li>
+										</ul>
+									<% } else { %>
+										<ul>
+											<li><a href="/profile">Profile</a></li>
+											<li><a href="/logout">Log Out</a></li>
+										</ul>
+									<% } %>
+								</li>
 								<li><a href="/stationSearch">Station Search</a></li>
 							</ul>
 						</nav>
@@ -67,10 +80,6 @@
 						<div class="row">
 							<div class="col-8 col-12-medium">
 								<section>
-									<header>
-										<h2>Current Story</h2>
-										<h3><%= story %></h3>
-									</header>
 									<ul class="dates">
 										<li>
 											<span class="date">Jan <strong>27</strong></span>

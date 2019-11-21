@@ -4,14 +4,21 @@ module.exports = function(app, passport, db) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        const story = db.collection('newsStories').findOne();
-        // console.table(story)
-        res.render('accounts.ejs', {loadedData: {isLoggedIn: false}});
+        let isLoggedIn = (req.user)?(true):(false);
+        res.render('index.ejs', {
+          isLoggedIn: isLoggedIn,
+          user: req.user
+        });
     });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {user: req.user});
+        // this should always be true
+        let isLoggedIn = (req.user)?(true):(false);
+        res.render('profile.ejs', {
+          isLoggedIn: isLoggedIn,
+          user: req.user
+        });
     });
 
     // LOGOUT ==============================
@@ -19,54 +26,6 @@ module.exports = function(app, passport, db) {
         req.logout();
         res.redirect('/');
     });
-
-// message board routes ===============================================================
-
-    app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
-        if (err) return console.log(err)
-        console.log('saved to database')
-        res.redirect('/profile')
-      })
-    })
-
-    app.put('/thumbsUp', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        $set: {
-          thumbUp:req.body.thumbUp + 1
-        }
-      }, {
-        sort: {_id: -1},
-        upsert: true
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-    })
-
-    app.put('/thumbDown', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        $set: {
-          thumbUp: Math.max(req.body.thumbUp - 1, 0)
-        }
-      }, {
-        sort: {_id: -1},
-        upsert: true
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-    })
-
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
-        if (err) return res.send(500, err)
-        res.send('Message deleted!')
-      })
-    })
-
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
@@ -75,7 +34,10 @@ module.exports = function(app, passport, db) {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
+            res.render('login.ejs', {
+              isLoggedIn: false,
+              user: req.user, 
+              message: req.flash('loginMessage') });
         });
 
         // process the login form
@@ -88,7 +50,10 @@ module.exports = function(app, passport, db) {
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+            res.render('signup.ejs', { 
+              isLoggedIn: false,
+              user: req.user,
+              message: req.flash('signupMessage') });
         });
 
         // process the signup form
