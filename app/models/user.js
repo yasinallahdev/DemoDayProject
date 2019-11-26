@@ -1,6 +1,6 @@
 // load the things we need
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt');
+var bcrypt   = require('bcryptjs');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
@@ -8,27 +8,32 @@ var userSchema = mongoose.Schema({
 
     favoriteStations : Array,
     username         : String,
-    local            : {
-        email        : String,
-        password     : String
+    accessibilityNeeds : {
+        routeTransfer       : Boolean, // All route transfers should be possible with the other accessibility parameters
+        wheelchairAccess    : Boolean, // If this is required, stations with high-level platforms, escalators, and elevators are prioritized
+        visibility          : Boolean // If this is required, routes using vehicles with audio queues will be prioritizeds
     },
-    facebook         : {
-        id           : String,
-        token        : String,
-        name         : String,
-        email        : String
+    local                   : {
+        email               : String,
+        password            : String
     },
-    twitter          : {
-        id           : String,
-        token        : String,
-        displayName  : String,
-        username     : String
+    facebook                : {
+        id                  : String,
+        token               : String,
+        name                : String,
+        email               : String
     },
-    google           : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
+    twitter                 : {
+        id                  : String,
+        token               : String,
+        displayName         : String,
+        username            : String
+    },
+    google                  : {
+        id                  : String,
+        token               : String,
+        email               : String,
+        name                : String
     }
 
 });

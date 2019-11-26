@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
@@ -52,21 +53,47 @@
 								<header>
 									<h2><%= user.username %>'s Profile</h2>
 								</header>
-								<h3>Favorite Stations: </h3>
-								<ul>
-									<% for(let i = 0; i < user.favoriteStations.length; i++) { %>
-										<li class="stationListing">
-											<span>Station: </span>
-											<span class="stationName"><%= user.favoriteStations[i].stationName %></span>
-											<span class="trashButton">🗑️</span>
-										</li>
+								<section>
+									<h3>Favorite Stations: </h3>
+									<ul>
+										<% for(let i = 0; i < user.favoriteStations.length; i++) { %>
+											<li class="stationListing">
+												<span>Station: </span>
+												<span class="stationName"><%= user.favoriteStations[i].stationName %></span>
+												<span class="trashButton">🗑️</span>
+											</li>
+										<% } %>
+									</ul>
+									<form action="/addFavoriteStation" method="post">
+										<label for="newFavoriteStationInput">Add Favorite Station: </label>
+										<input id="newFavoriteStationInput" type="text" name="stationName">
+										<button type="submit">Add Station</button>
+									</form>
+								</section>
+								<section>
+									<h3>Accessibility Needs</h3>
+									<label for="routeTransferCheckbox">Route Transfers: </label>
+									<% if (user.accessibilityNeeds.routeTransfer) { %>
+										<input type="checkbox" id="routeTransferCheckbox" checked>
+									<% } else { %>
+										<input type="checkbox" id="routeTransferCheckbox">
 									<% } %>
-								</ul>
-								<form action="/addFavoriteStation" method="post">
-									<label for="newFavoriteStationInput">Add Favorite Station: </label>
-									<input id="newFavoriteStationInput" type="text" name="stationName">
-									<button type="submit">Add Station</button>
-								</form>
+
+									<label for="mobilityCheckbox">Mobility: </label>
+									<% if(user.accessibilityNeeds.wheelchairAccess) { %>
+										<input type="checkbox" id="mobilityCheckbox" checked>
+									<% } else { %>
+										<input type="checkbox" id="mobilityCheckbox">
+									<% } %>
+
+									<label for="visibility">Visibility: </label>
+									<% if(user.accessibilityNeeds.visibility) { %>
+										<input type="checkbox" id="visibilityCheckbox" checked>
+									<% } else { %>
+										<input type="checkbox" id="visibilityCheckbox">
+									<% } %>
+									<button id="updateRequirements">Update Accessibility Requirements</button>
+								</section>
 								<section>
 									<header>
 									</header>

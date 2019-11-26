@@ -10,3 +10,10 @@ body {
     width: 50%;
     height: 50%;
 }
+
+#routeTransferCheckbox, #mobilityCheckbox, #visibilityCheckbox {
+    -moz-appearance: checkbox;
+    -webkit-appearance: checkbox;
+    -ms-appearance: checkbox;
+    appearance: checkbox;
+}
