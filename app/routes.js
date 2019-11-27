@@ -1,5 +1,5 @@
 const axios = require('axios');
-const apiKey = require('./../config/api/apiKey.js');
+const apiKeys = require('./../config/api/apiKey.js');
 
 module.exports = function(app, passport, db) {
 
