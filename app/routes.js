@@ -1,7 +1,6 @@
-const axios = require('axios');
 const apiKeys = require('./../config/api/apiKeys.js');
 
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport, db, axios) {
 
 // normal routes ===============================================================
 
@@ -29,6 +28,7 @@ module.exports = function(app, passport, db) {
         req.logout();
         res.redirect('/');
     });
+
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================

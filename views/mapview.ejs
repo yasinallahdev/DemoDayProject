@@ -10,67 +10,62 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			#map {
+				height: 500px;
+			}
+		</style>
 	</head>
-	<body class="homepage is-preload">
+	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
 				<section id="header">
 
 					<!-- Logo -->
-						<h1><a href="index.html">MBTA Train Tracker</a></h1>
-						<h6>Disclaimer: This Train Tracker is not associated with the MBTA.</h6>
-
+						<h1><a href="index.html">Accessible Trip Planner</a></h1>
 
 					<!-- Nav -->
-						<nav id="nav">
+					<nav id="nav">
 							<ul>
-								<li class="current"><a href="/">Home</a></li>
+								<li><a href="/">Home</a></li>
 								<li>
-									<span>Account</span>
-									<ul>
-										<% if(!isLoggedIn) { %>
+									<% if(!isLoggedIn) { %>
+										<span><a href="/login">Account</a></span>
+										<ul>
 											<li><a href="/login">Log In</a></li>
 											<li><a href="/signup">Sign Up</a></li>
-										<% } else { %>
-											<li><a href="/profile"><%= user.username %>'s Profile</a></li>
+										</ul>
+									<% } else { %>
+										<span><a href="/profile">Account</a></span>
+										<ul>
+											<li><a href="/profile">Profile</a></li>
 											<li><a href="/logout">Log Out</a></li>
-										<% } %>								
-									</ul>
+										</ul>
+									<% } %>
 								</li>
 								<li><a href="/stationSearch">Station Search</a></li>
 							</ul>
 						</nav>
-
-					<!-- Banner -->
-						<section id="banner">
-							<header>
-								<h2>A Trip Planner Reimagined.</h2>
-								<p>
-									This trip planner gives details on station accessibility, as well as station construction to give users a 
-									fully-accessible route to a train or bus station served by the MBTA Subway or MBTA Commuter Rail.
-								</p>
-							</header>
-						</section>
-
-					<!-- Intro -->
-						
 
 				</section>
 
 			<!-- Main -->
 				<section id="main">
 					<div class="container">
-						<div class="row">
-							<div class="col-12">
 
-							</div>
-							<div class="col-12">
+						<!-- Content -->
+							<section class="box post">
 
-								<!-- Blog -->
+								<h2>Station: <span id="station"><%= stationData.name %></span></h2>
+								<h3>This station is located at Latitude: <span id="stationLat"><%= stationData.latitude %></span> Longitude: <span id="stationLng"><%= stationData.longitude %></span></h3>
+								<h3>The Station Address is <%= stationData.address %></h3>
+								
+								<section id = "map">
+								</section>
 
-							</div>
-						</div>
+							</section>
+
 					</div>
 				</section>
 
@@ -80,6 +75,9 @@
 						<div class="row">
 							<div class="col-8 col-12-medium">
 								<section>
+									<header>
+										<h2>Blandit nisl adipiscing</h2>
+									</header>
 									<ul class="dates">
 										<li>
 											<span class="date">Jan <strong>27</strong></span>
@@ -212,6 +210,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="js/mapview.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkLI9p1y8kWO99XHYIAWke9lAOZtYFES4&callback=initMap" async defer></script>
 
 	</body>
 </html>

@@ -14,6 +14,7 @@ const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const session      = require('express-session');
+const axios = require('axios');
 
 var configDB = require('./config/database.js');
 
@@ -28,7 +29,9 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db);
+  require('./app/routes.js')(app, passport, db, axios);
+  require('./app/routes/mapview.js')(app, passport, db, axios);
+  require('./app/routes/directions.js')(app, passport, db, axios);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
