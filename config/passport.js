@@ -45,7 +45,7 @@ module.exports = (passport, textingClient) => {
 
 		// find a user whose email is the same as the forms email
 		// we are checking to see if the user trying to login already exists
-        User.findOne({ $or: [{ 'local.email' :  email }, {"username": req.body.username }]}, function(err, user) {
+        User.findOne({ $or: [{ 'local.email' :  email }, {"username": req.body.username }, {'phoneNumber': req.body.phoneNumber}]}, function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
@@ -102,7 +102,7 @@ module.exports = (passport, textingClient) => {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ $or: [{ 'local.email' :  email }, {"username": email }]}, function(err, user) {
+        User.findOne({ $or: [{ 'local.email' :  email }, {'username': email }, {'phoneNumber': email}]}, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);

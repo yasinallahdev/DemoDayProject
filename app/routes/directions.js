@@ -3,7 +3,7 @@ let directionPolylines = {};
 
 // All references to 'West Station' exist for future proofing, as the MBTA plans to build a 'West Station' to open in 2040 when the Beacon Park Yard near I-90 in Allston is redeveloped.
 
-module.exports = (app, passport, db, axios, textingClient) => {
+module.exports = (app, axios) => {
 
     app.get("/directionPolyline", (request, response) => {
         const polylines = directionPolylines[`${request.query.srcLat}, ${request.query.srcLng}, ${request.query.destLat}, ${request.query.destLng}`];

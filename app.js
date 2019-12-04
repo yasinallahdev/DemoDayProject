@@ -28,18 +28,6 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-// configuration ===============================================================
-mongoose.connect(configDB.url, (err, database) => {
-  if (err) return console.log(err)
-  db = database
-}); // connect to our database
-
-require('./app/routes.js')(app, passport, db, axios);
-require('./app/routes/mapview.js')(app, passport, db, axios);
-require('./app/routes/directions.js')(app, passport, db, axios, textingClient);
-
-require('./config/passport')(passport); // pass passport for configuration
-
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -58,6 +46,23 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+// configuration ===============================================================
+mongoose.connect(configDB.url, (err, database) => {
+  if (err) return console.log(err)
+  db = database
+}); // connect to our database
+
+require('./config/passport')(passport, textingClient); // pass passport for configuration
+
+require('./app/routes.js')(app, passport, db, axios);
+require('./app/routes/addFavoriteStation')(app, db, axios);
+require('./app/routes/deleteFavoriteStation')(app, db);
+require('./app/routes/directions.js')(app, axios);
+require('./app/routes/login.js')(app, passport);
+require('./app/routes/mapview.js')(app, passport, db, axios);
+require('./app/routes/profile.js')(app);
+require('./app/routes/signup.js')(app, passport);
 
 
 // routes ======================================================================
