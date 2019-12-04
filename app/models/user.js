@@ -8,6 +8,8 @@ var userSchema = mongoose.Schema({
 
     favoriteStations : Array,
     username         : String,
+    phoneNumber      : String,
+    creationDate     : Date,
     accessibilityNeeds : {
         routeTransfer       : Boolean, // All route transfers should be possible with the other accessibility parameters
         wheelchairAccess    : Boolean, // If this is required, stations with high-level platforms, escalators, and elevators are prioritized

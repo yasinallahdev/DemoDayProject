@@ -9,6 +9,9 @@ const MongoClient = require('mongodb').MongoClient
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash    = require('connect-flash');
+const TMClient = require('textmagic-rest-client');
+const apiKeys = require('./config/api/apiKeys');
+const textingClient = new TMClient('yasinallah', apiKeys.TMClient);
 
 const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -29,10 +32,11 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, axios);
-  require('./app/routes/mapview.js')(app, passport, db, axios);
-  require('./app/routes/directions.js')(app, passport, db, axios);
 }); // connect to our database
+
+require('./app/routes.js')(app, passport, db, axios);
+require('./app/routes/mapview.js')(app, passport, db, axios);
+require('./app/routes/directions.js')(app, passport, db, axios, textingClient);
 
 require('./config/passport')(passport); // pass passport for configuration
 

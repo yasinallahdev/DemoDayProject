@@ -10,6 +10,11 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			#map {
+				height: 500px;
+			}
+		</style>
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
@@ -49,63 +54,58 @@
 					<div class="container">
 
 						<!-- Content -->
-							<article class="box post">
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<header>
-									<h2>No Sidebar</h2>
-									<p>Lorem ipsum dolor sit amet feugiat</p>
-								</header>
-								<p>
-									Vestibulum scelerisque ultricies libero id hendrerit. Vivamus malesuada quam faucibus ante dignissim auctor
-									hendrerit libero placerat. Nulla facilisi. Proin aliquam felis non arcu molestie at accumsan turpis commodo.
-									Proin elementum, nibh non egestas sodales, augue quam aliquet est, id egestas diam justo adipiscing ante.
-									Pellentesque tempus nulla non urna eleifend ut ultrices nisi faucibus.
-									Vestibulum scelerisque ultricies libero id hendrerit. Vivamus malesuada quam faucibus ante dignissim auctor
-									hendrerit libero placerat. Nulla facilisi. Proin aliquam felis non arcu molestie at accumsan turpis commodo.
-									Proin elementum, nibh non egestas sodales, augue quam aliquet est, id egestas diam justo adipiscing ante.
-								</p>
-								<p>
-									Praesent a dolor leo. Duis in felis in tortor lobortis volutpat et pretium tellus. Vestibulum ac ante nisl,
-									a elementum odio. Duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis.
-									placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-									eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-									elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor.
-								</p>
-								<section>
-									<header>
-										<h3>Something else</h3>
-									</header>
-									<p>
-										Elementum odio duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis.
-										placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-										eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-										elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor
-										sit amet nullam consequat feugiat dolore tempus.
-										Elementum odio duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis.
-										placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-										eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-										elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor.
-									</p>
-									<p>
-										Nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-										eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-										elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor
-										sit amet nullam consequat feugiat dolore tempus.
-									</p>
-								</section>
-								<section>
-									<header>
-										<h3>So in conclusion ...</h3>
-									</header>
-									<p>
-										Nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc,
-										eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean
-										elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor
-										sit amet nullam consequat feugiat dolore tempus. Elementum odio duis semper risus et lectus commodo fringilla.
-										Maecenas sagittis convallis justo vel mattis.
-									</p>
-								</section>
-							</article>
+							<section class="box post">
+
+								<h2>
+									<span>Directions from</span>
+									<span>
+										<% if(displayStationForSource === -1) { %>
+											<span id="sourceStation"><%= sourceStation.attributes.name %> Station</span>
+										<% } else { %>
+											<span id="sourceStation">Boston <%= sourceStation.attributes.name %></span>
+										<% } %> 
+									</span> 
+									<span>to</span>
+									<span>
+										<% if(displayStationForDestination === -1) { %>
+											<span id="destStation"><%= destStation.attributes.name %> Station: </span>
+										<% } else { %>
+											<span id="destStation">Boston <%= destStation.attributes.name %>: </span>
+										<% } %>
+									</span>
+								</h2>
+								<h3>Source Station Latitude: <span id="srcLat"><%= sourceStation.attributes.latitude %></span> & Longitude: <span id="srcLng"><%= sourceStation.attributes.longitude %></span></h3>
+								<h3>Destination Station Latitude: <span id="destLat"><%= destStation.attributes.latitude %></span> & Longitude: <span id="destLng"><%= destStation.attributes.longitude %></span></h3>
+								<ol>
+									<% for(let i = 0; i < directionData.steps.length; i++) { %>
+										<li>
+											<% if(directionData.steps[i].html_instructions) { %>
+												<span><%- directionData.steps[i].html_instructions %></span>
+												<% if(directionData.steps[i].transit_details) { %>
+													<ul>
+														<li>Step Starts At: <span><%= directionData.steps[i].transit_details.departure_stop.name %></span></li>
+														<li>Step Ends At: <span><%= directionData.steps[i].transit_details.arrival_stop.name %></span></li>
+													</ul>
+												<% } %>
+												<% if(directionData.steps[i].steps) { %>
+													<ol>
+														<% for(let j = 0; j < directionData.steps[i].steps.length; j++) { %>
+															<li>
+																<% if(directionData.steps[i].steps[j].html_instructions !== undefined) { %>
+																	<span><%- directionData.steps[i].steps[j].html_instructions %></span>
+																<% } %>
+															</li>
+														<% } %>
+													</ol>
+												<% } %>
+											<% } %>
+										</li>
+									<% } %>
+								</ol>
+
+								<section id="map"></section>
+
+							</section>
 
 					</div>
 				</section>
@@ -251,6 +251,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="js/tripMapView.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyDkLI9p1y8kWO99XHYIAWke9lAOZtYFES4&callback=initMap" async defer></script>
 
 	</body>
 </html>
