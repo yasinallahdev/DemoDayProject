@@ -1,15 +1,21 @@
 const apiKeys = require('./../config/api/apiKeys.js');
 
-module.exports = function(app, passport, db, axios) {
+module.exports = function(app, db) {
 
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
         let isLoggedIn = (req.user)?(true):(false);
-        res.render('index.ejs', {
-          isLoggedIn: isLoggedIn,
-          user: req.user
+        db.collection('newsStories').find({}).toArray((err, result) => {
+            const featuredStory = result.find( story => story.featured );
+            const nonFeatured = result.filter( story => story != featuredStory );
+            res.render('index.ejs', {
+                isLoggedIn: isLoggedIn,
+                user: req.user,
+                featuredStory: featuredStory,
+                newsStories: nonFeatured
+            });
         });
     });
 

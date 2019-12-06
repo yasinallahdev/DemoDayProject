@@ -51,18 +51,20 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
+  require('./app/routes/addFavoriteStation')(app, db, axios, textingClient);
+  require('./app/routes/deleteFavoriteStation')(app, textingClient, db);
+  require('./app/routes/directions.js')(app, db, axios);
+  require('./app/routes/directionSearch.js')(app, db);
+  require('./app/routes/mapview.js')(app, db, axios);
+  require('./app/routes.js')(app, db);
+  require('./config/passport')(passport, textingClient); // pass passport for configuration
+  require('./app/routes/login.js')(app, db, passport);
+  require('./app/routes/profile.js')(app, db);
+  require('./app/routes/signup.js')(app, db, passport);
+  require('./app/routes/stationSearch.js')(app, db)
 }); // connect to our database
 
-require('./config/passport')(passport, textingClient); // pass passport for configuration
 
-require('./app/routes.js')(app, passport, db, axios);
-require('./app/routes/addFavoriteStation')(app, db, axios);
-require('./app/routes/deleteFavoriteStation')(app, db);
-require('./app/routes/directions.js')(app, axios);
-require('./app/routes/login.js')(app, passport);
-require('./app/routes/mapview.js')(app, passport, db, axios);
-require('./app/routes/profile.js')(app);
-require('./app/routes/signup.js')(app, passport);
 
 
 // routes ======================================================================

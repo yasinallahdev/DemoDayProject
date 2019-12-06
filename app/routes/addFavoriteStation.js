@@ -2,7 +2,6 @@ module.exports = (app, db, axios) => {
     app.post('/addFavoriteStation', (request, response) => {
         axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Orange,Mattapan`)
           .then(apiResponse => {
-            console.log(apiResponse.data.data);
             let stationFound = false;
             for(let i = 0; i < apiResponse.data.data.length; i++) {
               if(apiResponse.data.data[i].attributes.name.toLowerCase() === request.body.stationName.toLowerCase()) {

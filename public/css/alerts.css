@@ -1,0 +1,22 @@
+.alert {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.alert.info, .alert.message strong {
+    color: #059;
+    background-color: #BEF;
+}
+.alert.message, .alert.message strong {
+    color: #270;
+    background-color: #DFF2BF;
+}
+.alert.warning, .alert.warning strong {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.alert.error, .alert.error strong {
+    color: #D8000C;
+    background-color: #FFBABA;
+}

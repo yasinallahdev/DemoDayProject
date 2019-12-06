@@ -1,13 +1,20 @@
 
-module.exports = (app, passport) => {
+module.exports = (app, db, passport, utility) => {
     
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { 
-              isLoggedIn: false,
-              user: req.user,
-              message: req.flash('signupMessage') });
+            db.collection('newsStories').find({}).toArray((err, result) => {
+                const featuredStory = result.find( story => story.featured );
+                const nonFeatured = result.filter( story => story != featuredStory );
+                res.render('signup.ejs', { 
+                isLoggedIn: false,
+                user: req.user,
+                message: req.flash('signupMessage'),
+                featuredStory: featuredStory,
+                newsStories: nonFeatured
+                });
+            });
         });
 
         // process the signup form

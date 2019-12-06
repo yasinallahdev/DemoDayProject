@@ -11,49 +11,34 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
-	<body class="homepage is-preload">
+	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
 				<section id="header">
 
 					<!-- Logo -->
-						<h1><a href="index.html">MBTA Train Tracker</a></h1>
-						<h6>Disclaimer: This Train Tracker is not associated with the MBTA.</h6>
-
+						<h1><a href="index.html">Accessible Trip Planner</a></h1>
 
 					<!-- Nav -->
 					<%- include partials/navbar.ejs %>
-
-					<!-- Banner -->
-						<section id="banner">
-							<header>
-								<h2>A Trip Planner Reimagined.</h2>
-								<p>
-									This trip planner gives details on station accessibility, as well as station construction to give users a 
-									fully-accessible route to a train or bus station served by the MBTA Subway or MBTA Commuter Rail.
-								</p>
-							</header>
-						</section>
-
-					<!-- Intro -->
-						
 
 				</section>
 
 			<!-- Main -->
 				<section id="main">
 					<div class="container">
-						<div class="row">
-							<div class="col-12">
 
-							</div>
-							<div class="col-12">
+						<!-- Content -->
+							<article class="box post">
+								<h2>Find transit-based directions between stations: </h2>
+								<form action="/directionSearch" method="post">
+									<input type="text" name="sourceStation" placeholder="Origin Station">
+									<input type="text" name="destinationStation" placeholder="Destination Station">
+									<input type="submit" value="Submit">
+								</form>
+							</article>
 
-								<!-- Blog -->
-
-							</div>
-						</div>
 					</div>
 				</section>
 

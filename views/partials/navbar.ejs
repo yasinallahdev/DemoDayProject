@@ -1,0 +1,27 @@
+<nav id="nav">
+    <ul>
+        <li class="current"><a href="/">Home</a></li>
+        <li>
+            <% if(!isLoggedIn) { %>
+                <span><a href="/login">Account</a></span>
+                <ul>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                </ul>
+            <% } else { %>
+                <span><a href="/profile">Account</a></span>
+                <ul>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            <% } %>
+        </li>
+        <li>
+            <span>Stations</span>
+            <ul>
+                <li><a href="/stationSearch">Look Up a Station</a></li>
+                <li><a href="/directionSearch">Look for Directions</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
