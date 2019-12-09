@@ -40,8 +40,11 @@
 									<ul>
 										<% for(let i = 0; i < user.favoriteStations.length; i++) { %>
 											<li class="stationListing">
+												<% if(user.favoriteStations[i].hasAlert) { %>
+													<span>⚠️</span>
+												<% } %>
 												<span>Station: </span>
-												<span class="stationName"><a href="/map?station=<%=user.favoriteStations[i].stationName%>"><%= user.favoriteStations[i].stationName %></a></span>
+												<a href="/map?station=<%=user.favoriteStations[i].stationName%>"><span class="stationName"><%= user.favoriteStations[i].stationName %></span></a>
 												<span class="trashButton">🗑️</span>
 											</li>
 										<% } %>
