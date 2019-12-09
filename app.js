@@ -4,7 +4,6 @@
 // get all the tools we need
 const express  = require('express');
 const app      = express();
-const port     = process.env.PORT || 8080;
 const MongoClient = require('mongodb').MongoClient
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -74,6 +73,6 @@ async function loadRoutes() {
 loadRoutes();
 
 // launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);
+app.listen(process.env.PORT || 8080);
+console.log('The magic happens on port ' + (process.env.PORT || 8080));
 
