@@ -6,10 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Accessible Trip Planner</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<%- include partials/globalHead.ejs %>
 		<link rel="stylesheet" href="css/alerts.css">
 	</head>
 	<body class="no-sidebar is-preload">
@@ -18,11 +15,7 @@
 			<!-- Header -->
 				<section id="header">
 
-					<!-- Logo -->
-						<h1><a href="/">Accessible Trip Planner</a></h1>
-
-					<!-- Nav -->
-					<%- include partials/navbar.ejs %>
+					<%- include partials/header.ejs %>
 
 				</section>
 

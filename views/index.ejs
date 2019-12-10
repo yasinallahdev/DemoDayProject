@@ -6,10 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Accessible Trip Planner</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<%- include partials/globalHead.ejs %>
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -17,13 +14,7 @@
 			<!-- Header -->
 				<section id="header">
 
-					<!-- Logo -->
-						<h1><a href="index.html">MBTA Train Tracker</a></h1>
-						<h6>Disclaimer: This Train Tracker is not associated with the MBTA.</h6>
-
-
-					<!-- Nav -->
-					<%- include partials/navbar.ejs %>
+					<%- include partials/header.ejs %>
 
 					<!-- Banner -->
 						<section id="banner">
