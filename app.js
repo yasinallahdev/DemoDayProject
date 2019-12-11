@@ -55,8 +55,8 @@ async function loadRoutes() {
       db = database
   }); // connect to our database
 
-  require('./app/routes/addFavoriteStation')(app, db, axios, textingClient);
-  require('./app/routes/deleteFavoriteStation')(app, textingClient, db);
+  require('./app/routes/addFavoriteStation')(app, db, axios);
+  require('./app/routes/deleteFavoriteStation')(app, db);
   require('./app/routes/directions.js')(app, db, axios);
   require('./app/routes/directionSearch.js')(app, db);
   require('./app/routes/mapview.js')(app, db, axios);

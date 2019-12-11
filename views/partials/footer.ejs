@@ -1,19 +1,6 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-8 col-12-medium">
-                <section>
-                    <ul class="dates">
-                        <% for(let i = 0; i < newsStories.length; i++) { %>
-                            <li>
-                                <span class="date"><%= newsStories[i].month %> <strong><%= newsStories[i].day %></strong></span>
-                                <h3><a href="#"><%= newsStories[i].title %></a></h3>
-                                <p><%= newsStories[i].shortCaption %></p>
-                            </li>
-                        <% } %>
-                    </ul>
-                </section>
-            </div>
             <div class="col-4 col-12-medium">
                 <section>
                     <header>
@@ -26,6 +13,20 @@
                             <li><a href="#" class="button">Find out more</a></li>
                         </ul>
                     </footer>
+                </section>
+            </div>
+            <div class="col-8 col-12-medium">
+                <h3>News Stories: </h3>
+                <section>
+                    <ul class="dates">
+                        <% for(let i = 0; i < newsStories.length; i++) { %>
+                            <li>
+                                <span class="date"><%= newsStories[i].month %> <strong><%= newsStories[i].day %></strong></span>
+                                <h6><a href="#"><%= newsStories[i].title %></a></h6>
+                                <p><%= newsStories[i].shortCaption %></p>
+                            </li>
+                        <% } %>
+                    </ul>
                 </section>
             </div>
             

@@ -29,7 +29,6 @@ module.exports = (app, db) => {
 
   // route middleware to ensure user is logged in
   function isLoggedIn(req, res, next) {
-    console.log(`Next: ${next}`);
     if (req.isAuthenticated())
         return next();
 

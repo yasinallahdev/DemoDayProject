@@ -33,11 +33,11 @@
 									<ul>
 										<% for(let i = 0; i < user.favoriteStations.length; i++) { %>
 											<li class="stationListing">
+												<span>Station: </span>
+												<a href="/map?station=<%=user.favoriteStations[i].stationName%>"><span class="stationName"><%= user.favoriteStations[i].stationName %></span></a>
 												<% if(user.favoriteStations[i].hasAlert) { %>
 													<span>⚠️</span>
 												<% } %>
-												<span>Station: </span>
-												<a href="/map?station=<%=user.favoriteStations[i].stationName%>"><span class="stationName"><%= user.favoriteStations[i].stationName %></span></a>
 												<span class="trashButton">🗑️</span>
 											</li>
 										<% } %>
