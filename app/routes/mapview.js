@@ -5,7 +5,7 @@ module.exports = (app, db, axios) => {
     app.get('/map', (request, response) => {
         let queryParam = request.query['station']
         let isLoggedIn = (request.user)?(true):(false);
-        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Orange,CR-Providence`)
+        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Middleborough,CR-Providence`)
             .then(apiResponse => {
                 console.log(`There are ${apiResponse.data.data.length} stations in total.`);
                 const station = apiResponse.data.data.find( stationObject => { return stationObject.attributes.name.toUpperCase() === queryParam.toUpperCase(); })
@@ -31,12 +31,12 @@ module.exports = (app, db, axios) => {
                     });
                 } else {
                     response.status(404);
-                    response.send(`The station ${queryParam} was not found. (Note that only MBTA Green Line stations, as well as Providence/Stoughton Line Trains, are currently supported)`);
+                    response.send(`The station ${queryParam} was not found. (Note that only MBTA Subway (Red/Blue/Green/Orange Line) stations, as well as Providence/Stoughton & Middleborugh/Lakeville Line Trains, are currently supported)`);
                 }
             })
             .catch(err => console.log(err));
       })
 
-      const futureLines = "Red,Blue,Orange,Mattapan,CR-Providence,CR-Franklin,CR-Needham,CR-Fitchburg,CR-Fairmount,CR-Newburyport,CR-Middleborough,CR-Lowell,CR-Kingston,CR-Haverhill,CR-Greenbush,CR-Worcester";
+      const futureLines = "Red,Blue,Orange,Mattapan,CR-Providence,CR-Franklin,CR-Needham,CR-Fitchburg,CR-Fairmount,CR-Newburyport,CR-Kingston,CR-Lowell,CR-Haverhill,CR-Greenbush,CR-Worcester";
 
 }

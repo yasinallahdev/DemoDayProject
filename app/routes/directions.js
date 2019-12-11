@@ -17,7 +17,7 @@ module.exports = (app, db, axios) => {
         let endStation = request.query['destinationStation'];
         let isLoggedIn = (request.user)?(true):(false);
         // This API will get all MBTA Subway Stations, as well as stations along the Providence/Stoughton Line.
-        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Orange,Green-B,Green-C,Green-D,Green-E,CR-Providence,CR-Kingston`)
+        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Middleborough,CR-Providence`)
             .then(apiResponse => {
                 console.log(`There are ${apiResponse.data.data.length} stations in total.`);
                 const sourceStation = apiResponse.data.data.find( stationObject => { return stationObject.attributes.name.toUpperCase() === startStation.toUpperCase(); })
@@ -77,7 +77,7 @@ module.exports = (app, db, axios) => {
                     });
                 } else {
                     response.status(404);
-                    response.send(`One of the stations you searched for (Start: ${startStation}, Dest: ${endStation} was not found. (Note that only MBTA Green Line Stations are currently supported)`);
+                    response.send(`One of the stations you searched for (Start: ${startStation}, Dest: ${endStation} was not found. (Note that only MBTA Subway (Red/Blue/Green/Orange Lines), Providence/Stoughton, or Middleborugh/Lakeville Line Stations are currently supported)`);
                 }
             })
             .catch(err => console.log(err));

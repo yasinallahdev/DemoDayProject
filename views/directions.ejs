@@ -8,6 +8,7 @@
 	<head>
 		<%- include partials/globalHead.ejs %>
 		<link rel="stylesheet" href="css/alerts.css">
+		<link rel="stylesheet" href="css/properties.css">
 		<style>
 			#map {
 				height: 500px;
@@ -57,8 +58,8 @@
 										<% } %>
 									</span>
 								</h2>
-								<h3><%= sourceStation.attributes.name %> Latitude: <span id="srcLat"><%= sourceStation.attributes.latitude %></span> & Longitude: <span id="srcLng"><%= sourceStation.attributes.longitude %></span></h3>
-								<h3><%= destStation.attributes.name %> Latitude: <span id="destLat"><%= destStation.attributes.latitude %></span> & Longitude: <span id="destLng"><%= destStation.attributes.longitude %></span></h3>
+								<h3 class="nodisplay"><%= sourceStation.attributes.name %> Latitude: <span id="srcLat"><%= sourceStation.attributes.latitude %></span> & Longitude: <span id="srcLng"><%= sourceStation.attributes.longitude %></span></h3>
+								<h3 class="nodisplay"><%= destStation.attributes.name %> Latitude: <span id="destLat"><%= destStation.attributes.latitude %></span> & Longitude: <span id="destLng"><%= destStation.attributes.longitude %></span></h3>
 								<ol>
 									<% for(let i = 0; i < directionData.steps.length; i++) { %>
 										<li>
