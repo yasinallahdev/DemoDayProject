@@ -1,6 +1,6 @@
 module.exports = (app, db, axios) => {
     app.post('/addFavoriteStation', (request, response) => {
-        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Orange,Mattapan,CR-Middleborough,CR-Providence`)
+        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Fitchburg,CR-Haverhill,CR-Lowell,CR-Newburyport,CR-Greenbush,CR-Middleborough,CR-Kingston,CR-Fairmount,CR-Franklin,CR-Worcester,CR-Providence,CR-Needham`)
           .then(apiResponse => {
             let stationFound = false;
             for(let i = 0; i < apiResponse.data.data.length; i++) {

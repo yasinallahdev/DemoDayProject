@@ -5,7 +5,7 @@ module.exports = (app, db, axios) => {
     app.get('/map', (request, response) => {
         let queryParam = request.query['station']
         let isLoggedIn = (request.user)?(true):(false);
-        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Middleborough,CR-Providence`)
+        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Fitchburg,CR-Haverhill,CR-Lowell,CR-Newburyport,CR-Greenbush,CR-Middleborough,CR-Kingston,CR-Fairmount,CR-Franklin,CR-Worcester,CR-Providence,CR-Needham`)
             .then(apiResponse => {
                 console.log(`There are ${apiResponse.data.data.length} stations in total.`);
                 const station = apiResponse.data.data.find( stationObject => { return stationObject.attributes.name.toUpperCase() === queryParam.toUpperCase(); })

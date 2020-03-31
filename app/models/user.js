@@ -10,6 +10,7 @@ var userSchema = mongoose.Schema({
     username         : String,
     phoneNumber      : String,
     creationDate     : Date,
+    userProfilePictureURL : String,
     accessibilityNeeds : {
         routeTransfer       : Boolean, // All route transfers should be possible with the other accessibility parameters
         wheelchairAccess    : Boolean, // If this is required, stations with high-level platforms, escalators, and elevators are prioritized

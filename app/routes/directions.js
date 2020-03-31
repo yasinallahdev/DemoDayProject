@@ -17,7 +17,7 @@ module.exports = (app, db, axios) => {
         let endStation = request.query['destinationStation'];
         let isLoggedIn = (request.user)?(true):(false);
         // This API will get all MBTA Subway Stations, as well as stations along the Providence/Stoughton Line.
-        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Middleborough,CR-Providence`)
+        axios.get(`https://api-v3.mbta.com/stops?route=Red,Blue,Green-B,Green-C,Green-D,Green-E,Mattapan,Orange,CR-Fitchburg,CR-Haverhill,CR-Lowell,CR-Newburyport,CR-Greenbush,CR-Middleborough,CR-Kingston,CR-Fairmount,CR-Franklin,CR-Worcester,CR-Providence,CR-Needham`)
             .then(apiResponse => {
                 console.log(`There are ${apiResponse.data.data.length} stations in total.`);
                 const sourceStation = apiResponse.data.data.find( stationObject => { return stationObject.attributes.name.toUpperCase() === startStation.toUpperCase(); })
