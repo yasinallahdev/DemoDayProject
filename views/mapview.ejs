@@ -8,6 +8,7 @@
 	<head>
 		<%- include partials/globalHead.ejs %>
 		<link rel="stylesheet" href="css/alerts.css" />
+		<link rel="stylesheet" href="css/submitAlert.css" />
 		<style>
 			#map {
 				height: 500px;
@@ -33,9 +34,7 @@
 
 								<% if(alerts.length > 0) { %>
 									<% for(let i = 0; i < alerts.length; i++) { %>
-										<section class="alert warning">
-											<span><%- alerts[i] %></span>
-										</section>
+										<section class = "alert warning"><%- alerts[i] %></section>
 									<% } %>
 								<% } %>
 
@@ -45,6 +44,12 @@
 								<section id = "map">
 								</section>
 
+								<% if(isLoggedIn) { %>
+									<label id="submitAlertLabel" for="submitAlertInput">Add an accessibility note: </label>
+									<br/>
+									<textarea name="submitAlertInput" id="submitAlertInput" cols="30" rows="10"></textarea>
+									<button type="submit" id="submitAlertButton">Submit Alert</button>
+								<% } %>
 							</section>
 
 					</div>

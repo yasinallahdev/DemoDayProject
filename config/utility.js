@@ -12,7 +12,7 @@ module.exports = {
                 alertCounts[alert.stationName]++;
             }
             const alertName = `${alert.stationName}${alertCounts[alert.stationName]}`;
-            request.flash(alertName, `<h4>⚠️<strong>${alert.stationName}</strong></h4><p>${alert.thisAlert}</p>`);
+            request.flash(alertName, `<h4>⚠️<strong>${alert.stationName}</strong></h4><p>${alert.thisAlert}<br>Submitted By: ${alert.submittedBy}</p>`);
             alertFlashes.push(request.flash(alertName));
         }
         return alertFlashes;
