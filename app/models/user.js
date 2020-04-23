@@ -1,6 +1,6 @@
 // load the things we need
 var mongoose = require('mongoose');
-var bcrypt   = require('bcryptjs');
+var bcrypt   = require('bcrypt');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
@@ -11,10 +11,11 @@ var userSchema = mongoose.Schema({
     phoneNumber      : String,
     creationDate     : Date,
     userProfilePictureURL : String,
+    isAdministrator : Boolean, // if this user is an Administrator account, they have access to the Alerts Review Page
     accessibilityNeeds : {
         routeTransfer       : Boolean, // All route transfers should be possible with the other accessibility parameters
         wheelchairAccess    : Boolean, // If this is required, stations with high-level platforms, escalators, and elevators are prioritized
-        visibility          : Boolean // If this is required, routes using vehicles with audio queues will be prioritizeds
+        visibility          : Boolean // If this is required, routes using vehicles with audio queues will be prioritized
     },
     local                   : {
         email               : String,
