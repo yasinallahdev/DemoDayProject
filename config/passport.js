@@ -57,15 +57,17 @@ module.exports = (passport, textingClient) => {
 
 				// if there is no user with that email
                 // create the user
-                var newUser            = new User();
+                var newUser                 = new User();
 
                 // set the user's local credentials
                 newUser.favoriteStations    = [];
                 newUser.username            = req.body.username;
                 newUser.phoneNumber         = req.body.phoneNumber;
+                newUser.creationDate        = new Date();
+                newUser.isAdministrator     = (email === 'yasin.allahdev@gmail.com')?(true):(false);
                 newUser.local.email         = email;
                 newUser.local.password      = newUser.generateHash(password); // use the generateHash function in our user model
-                textingClient.Messages.send({text: `You've signed up for Greater Boston Transit Planner`, phones: convertPhoneNumber(newUser.phoneNumber)}, (err, res) => {
+                textingClient.Messages.send({text: `Hi ${req.body.username}! You've signed up for Greater Boston Transit Planner.`, phones: convertPhoneNumber(newUser.phoneNumber)}, (err, res) => {
                     console.log('Messages.send()', err, res);
                 });
                 newUser.local.accessibilityNeeds = {

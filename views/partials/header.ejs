@@ -20,6 +20,11 @@
                 </ul>
             <% } %>
         </li>
+        <% if(isLoggedIn && user.isAdministrator) { %>
+        <li>
+            <span><a href="/alertSubmissions">Alert Submissions</a></span>
+        </li>
+        <% } %>
         <li>
             <span>Stations</span>
             <ul>

@@ -6,6 +6,8 @@ const express  = require('express');
 const app      = express();
 const port     = process.env.PORT || 8080;
 const MongoClient = require('mongodb').MongoClient
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport()
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash    = require('connect-flash');
@@ -66,6 +68,8 @@ async function loadRoutes() {
   require('./app/routes/profile.js')(app, db);
   require('./app/routes/signup.js')(app, db, passport);
   require('./app/routes/stationSearch.js')(app, db);
+  require('./app/routes/submitAlert')(app, db, transporter);
+  require('./app/routes/alertSubmissions.js')(app, db);
 }
 
 // routes ======================================================================
