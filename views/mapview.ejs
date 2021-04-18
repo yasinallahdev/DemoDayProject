@@ -47,8 +47,10 @@
 								<% if(isLoggedIn) { %>
 									<label id="submitAlertLabel" for="submitAlertInput">Add an accessibility note: </label>
 									<br/>
-									<textarea name="submitAlertInput" id="submitAlertInput" cols="30" rows="10"></textarea>
-									<button type="submit" id="submitAlertButton">Submit Alert</button>
+									<form action="/submitAlert" method="post">
+										<textarea name="submitAlertInput" id="submitAlertInput" cols="30" rows="10"></textarea>
+										<button type="submit" id="submitAlertButton">Submit Alert</button>
+									</form>
 								<% } %>
 							</section>
 
