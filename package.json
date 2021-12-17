@@ -19,7 +19,7 @@
   "homepage": "https://github.com/yasinallahdev/DemoDayProject#readme",
   "dependencies": {
     "@google/maps": "^1.0.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
